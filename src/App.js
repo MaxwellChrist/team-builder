@@ -9,23 +9,81 @@ const memberList = [
   { name: "Evan", email: "throwaway@zoho.com", role: "Director"}
 ]
 
+const memeberValues = {
+  name: "",
+  email: "",
+  role: ""
+}
 
 function App() {
+
+const [members, setMemebers] = useState(memberList);
+const [values, setValues] = useState(memeberValues);
+
+const nameChange = (event => {
+  console.log(event.target.value);
+  setValues({...memeberValues, name: event.target.value});
+});
+
+const emailChange = (event => {
+  console.log(event.target.value);
+  setValues({...memeberValues, email: event.target.value});
+});
+
+const roleChange = (event => {
+  console.log(event.target.value);
+  setValues({...memeberValues, role: event.target.value});
+});
+
+const submit = (event) => {
+  event.preventDefault();
+  const newMemeber = {
+    name: values.name,
+    email: values.email,
+    role: values.role
+  }
+  setMemebers(members.concat(newMemeber));
+  setValues(memeberValues);
+}
+
+const display = memberList.map((e, id) => {
+  return <p key={id}>{e.name} is a {e.role}! You can reach them at {e.email}</p>
+})
+
   return (
     <div className="App">
-      <form>
-        <input 
-          name="name"
-          placeholder="Enter your name here"
-          value=""
-          type="text"
-        />
-        <input 
-          name="email"
-          placeholder="Enter your email here"
-          value=""
-          type="email"
-        />
+      <h1>Welcome to the Memebers' Membership!</h1>
+      <h3>Look at all of our current members below:</h3>
+      {display}
+      <form onSubmit={submit}>
+        <label>Name:
+          <input 
+            name="name"
+            placeholder="Enter your name here"
+            value=""
+            type="text"
+            onChange={nameChange}
+          />
+        </label>
+        <label>Email: 
+          <input 
+            name="email"
+            placeholder="Enter your email here"
+            value=""
+            type="email"
+            onChange={emailChange}
+          />
+        </label>
+        <label>Role: 
+          <input 
+            name="role"
+            placeholder="Enter your role here"
+            value=""
+            type="text"
+            onChange={roleChange}
+          />
+        </label>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
