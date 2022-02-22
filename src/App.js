@@ -9,7 +9,7 @@ const memberList = [
   { name: "Evan", email: "throwaway@zoho.com", role: "Director"}
 ]
 
-const memeberValues = {
+const memberValues = {
   name: "",
   email: "",
   role: ""
@@ -18,7 +18,7 @@ const memeberValues = {
 function App() {
 
 const [members, setMembers] = useState(memberList);
-const [values, setValues] = useState(memeberValues);
+const [values, setValues] = useState(memberValues);
 
 const editor = (event => {
   console.log(event.target.value);
@@ -27,16 +27,16 @@ const editor = (event => {
 
 const submit = (event) => {
   event.preventDefault();
-  const newMemeber = {
+  const newMember = {
     name: values.name,
     email: values.email,
     role: values.role
   }
-  setMembers(members.concat(newMemeber));
-  setValues(memeberValues);
+  setMembers(members.concat(newMember));
+  setValues(memberValues);
 }
 
-const display = memberList.map((e, id) => {
+const display = members.map((e, id) => {
   return <p key={id}>{e.name} is a {e.role}! You can reach them at {e.email}</p>
 })
 
@@ -85,17 +85,17 @@ export default App;
 // --> Old way (using three slices of state and refactored to use only one) <--
 // const nameChange = (event => {
 //   console.log(event.target.value);
-//   setValues({...memeberValues, name: event.target.value});
+//   setValues({...memberValues, name: event.target.value});
 // });
 
 // const emailChange = (event => {
 //   console.log(event.target.value);
-//   setValues({...memeberValues, email: event.target.value});
+//   setValues({...memberValues, email: event.target.value});
 // });
 
 // const roleChange = (event => {
 //   console.log(event.target.value);
-//   setValues({...memeberValues, role: event.target.value});
+//   setValues({...memberValues, role: event.target.value});
 // });
 // --> In each input field <--
 // onChange={nameChange}
