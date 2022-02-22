@@ -20,19 +20,9 @@ function App() {
 const [members, setMemebers] = useState(memberList);
 const [values, setValues] = useState(memeberValues);
 
-const nameChange = (event => {
+const editor = (event => {
   console.log(event.target.value);
-  setValues({...memeberValues, name: event.target.value});
-});
-
-const emailChange = (event => {
-  console.log(event.target.value);
-  setValues({...memeberValues, email: event.target.value});
-});
-
-const roleChange = (event => {
-  console.log(event.target.value);
-  setValues({...memeberValues, role: event.target.value});
+  setValues({...values, [event.target.name]: event.target.value});
 });
 
 const submit = (event) => {
@@ -60,27 +50,27 @@ const display = memberList.map((e, id) => {
           <input 
             name="name"
             placeholder="Enter your name here"
-            value=""
+            value={values.name}
             type="text"
-            onChange={nameChange}
+            onChange={editor}
           />
         </label>
         <label>Email: 
           <input 
             name="email"
             placeholder="Enter your email here"
-            value=""
+            value={values.email}
             type="email"
-            onChange={emailChange}
+            onChange={editor}
           />
         </label>
         <label>Role: 
           <input 
             name="role"
             placeholder="Enter your role here"
-            value=""
+            value={values.role}
             type="text"
-            onChange={roleChange}
+            onChange={editor}
           />
         </label>
         <button type="submit">Submit</button>
@@ -90,3 +80,21 @@ const display = memberList.map((e, id) => {
 }
 
 export default App;
+
+// const nameChange = (event => {
+//   console.log(event.target.value);
+//   setValues({...memeberValues, name: event.target.value});
+// });
+
+// const emailChange = (event => {
+//   console.log(event.target.value);
+//   setValues({...memeberValues, email: event.target.value});
+// });
+
+// const roleChange = (event => {
+//   console.log(event.target.value);
+//   setValues({...memeberValues, role: event.target.value});
+// });
+// onChange={nameChange}
+// onChange={emailChange}
+// onChange={roleChange}
