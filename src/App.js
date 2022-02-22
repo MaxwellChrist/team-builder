@@ -17,7 +17,7 @@ const memeberValues = {
 
 function App() {
 
-const [members, setMemebers] = useState(memberList);
+const [members, setMembers] = useState(memberList);
 const [values, setValues] = useState(memeberValues);
 
 const editor = (event => {
@@ -32,7 +32,7 @@ const submit = (event) => {
     email: values.email,
     role: values.role
   }
-  setMemebers(members.concat(newMemeber));
+  setMembers(members.concat(newMemeber));
   setValues(memeberValues);
 }
 
@@ -42,7 +42,7 @@ const display = memberList.map((e, id) => {
 
   return (
     <div className="App">
-      <h1>Welcome to the Memebers' Membership!</h1>
+      <h1>Welcome to the Members' Membership!</h1>
       <h3>Look at all of our current members below:</h3>
       {display}
       <form onSubmit={submit}>
@@ -81,6 +81,8 @@ const display = memberList.map((e, id) => {
 
 export default App;
 
+
+// --> Old way (using three slices of state and refactored to use only one) <--
 // const nameChange = (event => {
 //   console.log(event.target.value);
 //   setValues({...memeberValues, name: event.target.value});
@@ -95,6 +97,7 @@ export default App;
 //   console.log(event.target.value);
 //   setValues({...memeberValues, role: event.target.value});
 // });
+// --> In each input field <--
 // onChange={nameChange}
 // onChange={emailChange}
 // onChange={roleChange}
